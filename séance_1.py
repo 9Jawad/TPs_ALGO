@@ -149,8 +149,24 @@ class Stack:
         return str()
             
 
-a = Stack()
-a.push(1)
-a.push(-6)
-a.push(2)
-print(a)
+def palindrom():
+    stack = Stack()
+
+    element = input('Premier item : ')
+    while element != '*':
+        stack.push(element)
+        element = input('Nouvel item (* au milieu): ')
+
+    res = True
+    print("-" * 16)
+    element = input('Item mirroir (# à la fin): ')
+    while element != '#':
+        if not stack.is_empty() and element == stack.pop():
+            element = input('Item mirroir (# à la fin): ')
+        else:
+            res = False
+            break
+    if stack.is_empty() and res:
+        print("C'est un palindrom ! ✅")
+    else:
+        print("C'est pas un palindrom ! ❌")
