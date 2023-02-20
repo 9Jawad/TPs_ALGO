@@ -73,9 +73,9 @@ class MatriceComplexe:
         if isinstance(val, (int, float)) or isinstance(val, Nbr_complexe):
             if isinstance(val, (int, float)):
                 val = Nbr_complexe(val, 0)
+            self.__matrice = [[val for _ in range(m)] for _ in range(n)]
         else:
             return NotImplemented
-        self.__matrice = [[val for _ in range(m)] for _ in range(n)]
     
     @property
     def n(self):
@@ -113,3 +113,28 @@ class MatriceComplexe:
                 self[i, j] = self[i, j] * other
         return self
     
+# ----------------------------------------------------------------
+
+## exercice 1.3
+
+class Stack:
+    def __init__(self):
+        self.items = []
+    
+    def is_empty(self):
+        return len(self.items) == 0
+    
+    def push(self, item):
+        self.items.append(item)
+    
+    def pop(self):
+        return self.items.pop()
+    
+    def top(self):
+        return self.items[-1]
+    
+    def __len__(self):
+        return len(self.items)
+    
+    def __str__(self):
+        return str(self.items)
