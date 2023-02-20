@@ -137,4 +137,9 @@ class Stack:
         return len(self.items)
     
     def __str__(self):
-        return str(self.items)
+        for i in range(len(self.items)):
+            index = len(self.items) - i -1
+            print( "|       |")
+            print(f"|  {' ' if self.items[index] >= 0 else ''}{self.items[index]}   |")
+            print( "|-------|")
+            
