@@ -242,3 +242,39 @@ def parChecker(expression):
     
 def matches(open, close):
     return '([{'.index(open) == ')]}'.index(close)
+
+
+################    inFixe to postFixe    ################ 
+
+import string
+
+def infixToPostfix(infix):
+    stack = StackV1()
+    result = []
+    prio = {}
+    prio['*'] = 3
+    prio['/'] = 3
+    prio['+'] = 2
+    prio['-'] = 2
+    prio['('] = 1
+    
+    infix = infix.split()
+    for token in infix:
+        if token in string.lowercase or token in string.digits :
+            result.append(token)
+        elif token == '(':
+            stack.push(token)
+        elif token == ')':
+            topToken = stack.pop()
+            while topToken != '(':
+                result.apprend(topToken)
+                topToken = stack.pop()
+        else:
+            while not stack.isEmpty() and prio[stack.top()] >= prio[token]:
+                result.append(stack.pop())
+            stack.push(token)
+    while not stack.isEmpty:
+        result.append(stack.pop())
+    return string.join(result)
+    
+    
