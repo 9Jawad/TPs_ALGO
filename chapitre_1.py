@@ -185,3 +185,32 @@ class HeapV2:
         self.first = self.first.getNext()
         self.n -= 1
         return res
+    
+    
+################    PostFixe    ################ 
+
+def postfixeEval(expression):
+    stack = StackV1()
+    list_token = expression.split()
+    for token in list_token:
+        if token in '0123456789':
+            stack.push(int(token))
+        elif token in '*/+-' and stack.size() >= 2:
+            operand_1 = stack.pop()
+            operand_2 = stack.pop()
+            result = Math(token, operand_1, operand_2)
+            stack.push(result)
+        else:
+            return NotImplemented
+    return stack.pop()
+
+
+def Math(token, operand_1, operand_2):
+    if token == '*':
+        return operand_1 * operand_2
+    elif token == '/':
+        return operand_1 / operand_2
+    elif token == '+':
+        return operand_1 + operand_2
+    elif token == '-':
+        return operand_1 - operand_2
