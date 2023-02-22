@@ -115,7 +115,17 @@ class MatriceComplexe:
     
 # ----------------------------------------------------------------
 
-## exercice 1.3
+# exercice 1. 3     ---->      liste bidirectionnelle circulaire
+
+
+
+
+
+
+
+# ----------------------------------------------------------------
+
+## exercice 1.4
 
 class Stack:
     def __init__(self):
