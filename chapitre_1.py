@@ -214,3 +214,31 @@ def Math(token, operand_1, operand_2):
         return operand_1 + operand_2
     elif token == '-':
         return operand_1 - operand_2
+        
+        
+################    Parenthésage Checker    ################ 
+
+def parChecker(expression):
+    stack = StackV1()
+    i = 0
+    res = True
+    
+    while i < len(expression) and res:
+        token = expression[i]
+        if token in '([{':
+            stack.push(token)
+        elif token in ')]}':
+            if not stack.isEmpty():
+                op = stack.pop()
+                res = matches(op, token)
+            else:
+                res = False
+        i += 1
+        
+    if stack.isEmpty() and res:
+        return True
+    else:
+        return False
+    
+def matches(open, close):
+    return '([{'.index(open) == ')]}'.index(close)
