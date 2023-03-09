@@ -311,6 +311,16 @@ class lineaire:
         base.setNext(temp)
         self.count += 1
     
+    def search(self, item):
+        current = self.head
+        found = False
+        while current!= None and not found:
+            if current.getData() == item:
+                found = True
+            else:
+                current = current.getNext()
+        return found
+    
     def remove(self, base: Node):
         current = self.head
         previous = None
@@ -326,20 +336,104 @@ class lineaire:
         else:
             self.head = base.getNext()
     
+
+################    liste bidirectionnelle    ################ 
+
+class bidirect:
+    def __init__(self):
+        self.head = None
+        self.count = 0
+    
+    def lenght(self):
+        return self.count
+    
+    def isEmpty(self):
+        return self.head == None
+    
+    def add(self, item):
+        temp = Node(item)
+        temp.setNext(self.head)
+        if self.head != None:
+            self.head.setPrevious(temp)
+        self.head = temp
+        self.count += 1
+    
+    def addAfter(self, base: Node, item):
+        temp = Node(item)
+        temp.setNext(base.getNext())
+        temp.setPrevious(base)
+        if base.getNext() != None:
+            base.getNext().setPrevious(temp)
+        base.setNext(temp)
+        self.count += 1
+    
     def search(self, item):
         current = self.head
         found = False
-        while current!= None and not found:
+        while current != None and not found:
             if current.getData() == item:
                 found = True
             else:
                 current = current.getNext()
         return found
-        
-
-################    liste bidirectionnelle    ################ 
-
-
+    
+    def remove(self, base):
+        previous = base.getPrevious()
+        if base.getNext() != None:
+            base.getNext().setPrevious(previous)
+        if previous != None:
+            previous.setNext(base.getNext())
+        else:
+            self.head = base.getNext()
+        self.count -= 1
 
 
 ################    liste circulaire    ################ 
+
+class circ:
+    def __init__(self):
+        self.head = Node(-1)
+        self.head.setNext(self.head)
+        self.count = 0
+    
+    def isEmpty(self):
+        return self.head.getNext() == self.head
+    
+    def lenght(self):
+        return self.count
+    
+    def add(self, item):
+        temp = Node(item)
+        temp.setNext(self.head.getNext())
+        self.head.setNext(temp)
+        self.count += 1
+    
+    def addAfter(self, base: Node, item):
+        temp = Node(item)
+        temp.setNext(base.getNext())
+        base.setNext(temp)
+        self.count += 1
+    
+    def search(self, item):
+        current = self.head.getNext()
+        found = False
+        while current!= self.head and not found:
+            if current.getData() == item:
+                found = True
+            else:
+                current = current.getNext()
+        return found
+    
+    def remove(self, base: Node):
+        current = self.head.getNext()
+        previous = self.head
+        found = False
+        while current!= self.head and not found:
+            if current is base:
+                found = True
+            else:
+                previous = current
+                current = current.getNext()
+        if found:
+            previous.setNext(base.getNext())
+            self.count -= 1
