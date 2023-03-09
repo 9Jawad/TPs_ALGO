@@ -5,7 +5,7 @@
 ##############################
 
 
-################    CLASS NODE    ################ 
+################   Node   ################ 
 
 class Node:
     def __init__(self, initData):
@@ -101,7 +101,7 @@ class StackV2:
         return str()
     
     
- # AVEC CLASS NODE
+# AVEC NODE
     
 class StackV3:
     def __init__(self):
@@ -337,7 +337,7 @@ class lineaire:
             self.head = base.getNext()
     
 
-################    liste bidirectionnelle    ################ 
+################    bidirectionnelle    ################ 
 
 class bidirect:
     def __init__(self):
@@ -388,7 +388,7 @@ class bidirect:
         self.count -= 1
 
 
-################    liste circulaire    ################ 
+################     circulaire    ################ 
 
 class circ:
     def __init__(self):
