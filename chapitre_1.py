@@ -277,4 +277,69 @@ def infixToPostfix(infix):
         result.append(stack.pop())
     return string.join(result)
     
+
+################    liste linéaire    ################ 
+
+class lineaire:
+    def __init__(self):
+        self.head = None
+        self.count = 0
     
+    def lenghtV1(self):
+        return self.count
+    
+    def lenghtV2(self):
+        current = self.head
+        count = 0
+        while current != None:
+            count += 1
+            current = current.getNext()
+        return count
+        
+    def isEmpty(self):
+        return self.head == None
+    
+    def add(self, item):
+        temp = Node(item)
+        temp.setNext(self.head)
+        self.head = temp
+        self.count += 1
+    
+    def addAfter(self, base: Node, item):
+        temp = Node(item)
+        temp.setNext(base.getNext())
+        base.setNext(temp)
+        self.count += 1
+    
+    def remove(self, base: Node):
+        current = self.head
+        previous = None
+        found = False
+        while current!= None and not found:
+            if current is base:
+                found = True
+            else:
+                previous = current
+                current = current.getNext()
+        if previous != None:
+            previous.setNext(base.getNext())
+        else:
+            self.head = base.getNext()
+    
+    def search(self, item):
+        current = self.head
+        found = False
+        while current!= None and not found:
+            if current.getData() == item:
+                found = True
+            else:
+                current = current.getNext()
+        return found
+        
+
+################    liste bidirectionnelle    ################ 
+
+
+
+
+################    liste circulaire    ################ 
