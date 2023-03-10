@@ -280,7 +280,7 @@ def infixToPostfix(infix):
 
 ################    liste linéaire    ################ 
 
-class lineaire:
+class UnorderedListLineaire:
     def __init__(self):
         self.head = None
         self.count = 0
@@ -339,7 +339,7 @@ class lineaire:
 
 ################    bidirectionnelle    ################ 
 
-class bidirect:
+class UnorderedListBidirect:
     def __init__(self):
         self.head = None
         self.count = 0
@@ -390,7 +390,7 @@ class bidirect:
 
 ################     circulaire    ################ 
 
-class circ:
+class UnorderedListCirc:
     def __init__(self):
         self.head = Node(-1)
         self.head.setNext(self.head)

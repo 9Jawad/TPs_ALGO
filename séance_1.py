@@ -122,13 +122,90 @@ class MatriceComplexe:
     
 # ----------------------------------------------------------------
 
-# exercice 1. 3     ---->      liste bidirectionnelle circulaire
+## exercice 1. 3
 
+class Node:
+    def __init__(self, item):
+        self.data = item
+        self.next = None
+        self.previous = None
+    
+    def getNext(self):
+        return self.next
+    
+    def getPrevious(self):
+        return self.previous
 
+    def getData(self):
+        return self.data
 
+    def getPreviousData(self):
+        return self.getPrevious().getData()
+    
+    def setData(self, value):
+        self.data = value
+        
+    def setPrevious(self, value):
+        self.previous = value
+    
+    def setNext(self, value):
+        self.next = value
+        
 
+class UnorderedList:
+    def __init__(self):
+        self.head = Node(-1)
+        self.head.setNext(self.head)
+        self.head.setPrevious(self.head)
+        self.count = 0
+    
+    def isEmpty(self):
+        return self.head.getNext() == self.head
 
+    def lenght(self):
+        return self.count
+    
+    def last(self):
+        return self.head.getPrevious().getData()
+    
+    def __reversed__(self):
+        pass
+    
+    def __iter__(self):
+        pass
+        
+    def add(self, item):
+        temp = Node(item)
+        temp.setNext(self.head.getNext())
+        if self.head.getNext() != None:
+            self.head.getNext().setPrevious(temp)
+        self.head.setNext(temp)
+        self.count += 1
 
+    def addAfter(self, base: Node, item):
+        temp = Node(item)
+        temp.setNext(base.getNext())
+        temp.setPrevious(base)
+        if base.getNext() != None:
+            base.getNext().setPrevious(temp)
+        base.setNext(temp)
+        self.count += 1
+
+    def search(self, item):
+        current = self.head.getNext()
+        found = False
+        while current != self.head and not found:
+            if current.getData() == item:
+                found = True
+            else:
+                current = current.getNext()
+        return found
+
+    def remove(self, base: Node):
+        previous = base.getPrevious()
+        previous.setNext(base.getNext())
+        base.getNext().setPrevious(previous)
+        self.count -= 1
 
 # ----------------------------------------------------------------
 
